@@ -1,0 +1,67 @@
+﻿@page "/"
+@inject ToDoViewModel _viewModel
+@using ToDo.SPA.ViewModels.TodoViewModels
+@using ToDo.SPA.DataModel.Todos.Enum
+@using ToDo.SPA.DataModel.Todos
+
+<EditForm Model="_viewModel.TodoCreate" OnValidSubmit="_viewModel.AddNewTodo">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+    <div class="border border-2 m-2">
+        <button type="submit" class="btn btn-primary">Add</button>
+        <button class="btn btn-danger">Delete</button>
+    </div>
+    <div>
+        <div class="row">
+            <div class="col">
+                <div>Title: </div>
+                <InputText @bind-Value="_viewModel.TodoCreate.Title"/>
+            </div>
+            <div class="col">
+                <div>Status</div>
+                <InputSelect @bind-Value="_viewModel.TodoCreate.Status">
+                    <option></option>
+                    <option value="@ToDoStatus.ToDo">To do</option>
+                    <option value="@ToDoStatus.Finished">Finished</option>
+                </InputSelect>
+            </div>
+            <div class="col">
+
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+<div>
+    @if (_viewModel.Todos.Count() == 0)
+    {
+        <div>You dont have any Tasks</div>
+    }
+    else
+    {
+        @foreach (var todo in _viewModel.Todos)
+        {
+            <div class="border border-1 m-5">
+                <div>
+                    Id: @todo.Id
+                </div>
+                <div class="ml-3">
+                    <label class="form-label">Title</label>
+                    <InputText class="form-control" @bind-Value="todo.Title"/>
+                </div>
+                <div>
+                    <label class="form-label">Status</label>
+                    <div class="form-control">@todo.Status</div>
+                </div>
+            </div>
+            <button @onclick="() => _viewModel.DeleteTodo(todo.Id)" class="btn btn-dark">Remove</button>
+        }
+    }
+</div>
+
+@code{
+    protected override async Task OnInitializedAsync()
+    {
+        await _viewModel.OnInitializedAsync();
+    }
+}

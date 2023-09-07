@@ -1,0 +1,71 @@
+body {
+  font-family: "Open Sans", sans-serif;
+  line-height: 1.6;
+}
+
+.add-todo-input,
+.edit-todo-input {
+  outline: none;
+}
+
+.add-todo-input:focus,
+.edit-todo-input:focus {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.view-opt-label,
+.date-label {
+  font-size: 0.8rem;
+}
+
+.edit-todo-input {
+  font-size: 1.3rem !important;
+}
+
+.todo-actions {
+  visibility: hidden !important;
+}
+
+.todo-item:hover .todo-actions {
+  visibility: visible !important;
+}
+
+.todo-item.editing .todo-actions .edit-icon {
+  display: none !important;
+}
+
+
+.todo-del-cre{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.id-item{
+  width: 35px;
+  margin-top: 15px;
+  margin-left: 10px;
+  color: #0D6EFD;
+
+  border-right:2px solid #ccc;
+  }
+
+
+.todo-edit{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 25px;
+}
+
+.btn_save{
+  color: green;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
